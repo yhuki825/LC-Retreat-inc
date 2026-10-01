@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--
+============================================================
+  株式会社LCリトリート  ブランドサイト デザイン案
+  コンセプト：「一歩退くと、全体が見えてくる」
+  社名の Retreat を「俯瞰するために距離をとる時間」と解釈。
+============================================================
+  【公開前の確認事項チェックリスト】
+  □ 社名「LC」の由来・意味（由来があればコンセプト文に反映可）
+  □ 代表者の役職名（本案では「代表取締役」と仮置き）
+  □ 設立年月日・資本金・従業員数（会社概要で空欄）
+  □ 代表メッセージは草案です。代表ご本人の確認・修正が必須
+  □ 組織再編・設立支援の範囲：税務判断は税理士（税理士法）、
+    法律事務・書類作成代理は弁護士・司法書士・行政書士の業務範囲。
+    提携士業との連携体制で対応する旨の記載可否を確認
+  □ M&Aの仲介・FAを行う場合、中小M&Aガイドライン遵守状況／
+    M&A支援機関登録制度への登録有無の表記を確認
+  □ 認定経営革新等支援機関等の認定があれば会社概要に追記
+  □ 実績数値・顧客名を掲載する場合は根拠資料と許諾を確認（景品表示法）
+  □ 画像はUnsplashのフリー素材（仮）。本番は差し替え推奨
+  □ OGP画像・favicon・Google Analytics等の設定
+============================================================
+  デプロイ：Cloudflare Pages（Direct Upload）に本ファイルを
+  そのままアップロードしてください。ビルド設定は不要です。
+============================================================
+-->
+<title>株式会社LCリトリート｜経営コンサルティング</title>
+<meta name="description" content="株式会社LCリトリートは、経営戦略の策定、経営に関する指導・助言、企業の設立・運営・再編を支援する経営コンサルティング会社です。">
+<meta property="og:title" content="株式会社LCリトリート">
+<meta property="og:description" content="一歩退くと、全体が見えてくる。経営戦略の策定から、企業の設立・運営・再編まで。">
+<meta property="og:type" content="website">
+<!-- 要確認：og:url / og:image を公開URLに合わせて設定 -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2316202B'/%3E%3Crect x='8' y='8' width='16' height='16' fill='none' stroke='%23B08D57' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%23EEF0EC'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Shippori+Mincho+B1:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ai:#16202B;        /* 深藍：ベース */
+  --ai-deep:#101820;
+  --ai-soft:#1F2B38;
+  --hakuji:#EEF0EC;    /* 白磁：主テキスト */
+  --kiri:#AEB8BC;      /* 霧：副テキスト */
+  --shinchu:#B08D57;   /* 真鍮：アクセント */
+  --koke:#6F8676;      /* 苔：補助 */
+  --line:rgba(238,240,236,.14);
+  --serif:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --latin:"Cormorant Garamond","Times New Roman",serif;
+  --wrap:min(1160px,90vw);
+  --ease:cubic-bezier(.22,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--ai);color:var(--hakuji);
+  font-family:var(--sans);font-size:16px;line-height:1.95;letter-spacing:.04em;
+  -webkit-font-smoothing:antialiased;
+  word-break:auto-phrase;text-wrap:pretty;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+.nw{display:inline-block}
+:focus-visible{outline:2px solid var(--shinchu);outline-offset:4px}
+.skip{position:absolute;left:-999px;top:0;background:var(--shinchu);color:var(--ai);padding:.6em 1em;z-index:200}
+.skip:focus{left:1rem;top:1rem}
+.wrap{width:var(--wrap);margin-inline:auto}
+
+/* ---------- Header ---------- */
+.hd{position:fixed;inset:0 0 auto 0;z-index:100;transition:background .5s var(--ease),padding .5s var(--ease);padding:28px 0}
+.hd.is-scrolled{background:rgba(16,24,32,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:14px 0;border-bottom:1px solid var(--line)}
+.hd__in{width:min(1280px,92vw);margin-inline:auto;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+.logo__mark{width:30px;height:30px;flex:none}
+.logo__txt{display:flex;flex-direction:column;line-height:1.2}
+.logo__en{font-family:var(--latin);font-size:1.35rem;letter-spacing:.06em}
+.logo__ja{font-size:.66rem;color:var(--kiri);letter-spacing:.18em}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:2.2rem}
+.nav a{text-decoration:none;font-size:.86rem;letter-spacing:.14em;position:relative;padding:4px 0}
+.nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--shinchu);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.nav a:hover::after,.nav a:focus-visible::after{transform:scaleX(1)}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative;color:var(--hakuji)}
+.burger span{position:absolute;left:10px;right:10px;height:1px;background:currentColor;transition:transform .4s var(--ease),opacity .3s}
+.burger span:nth-child(1){top:17px}.burger span:nth-child(2){top:26px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(4.5px) rotate(20deg)}
+.burger[aria-expanded="true"] span:nth-child(2){transform:translateY(-4.5px) rotate(-20deg)}
+
+/* ---------- Scroll rail : 視野ファインダー ---------- */
+.rail{position:fixed;right:26px;top:50%;transform:translateY(-50%);height:52vh;width:40px;z-index:90;pointer-events:none}
+.rail__line{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line)}
+.rail__tick{position:absolute;left:calc(50% - 4px);width:8px;height:1px;background:rgba(238,240,236,.3)}
+.rail__frame{position:absolute;left:50%;top:0;border:1px solid var(--shinchu);transform:translate(-50%,-50%);width:8px;height:8px;transition:width .2s,height .2s}
+.rail__frame::after{content:"";position:absolute;left:50%;top:50%;width:2px;height:2px;margin:-1px 0 0 -1px;background:var(--hakuji);border-radius:50%}
+.rail__val{position:absolute;right:0;bottom:-34px;font-family:var(--latin);font-style:italic;font-size:.85rem;color:var(--kiri);white-space:nowrap;writing-mode:vertical-rl;transform:translateX(-12px)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;height:100svh;min-height:640px;overflow:hidden;background:radial-gradient(ellipse at 50% 55%,var(--ai-soft),var(--ai-deep) 72%)}
+#field{position:absolute;inset:0;width:100%;height:100%}
+.hero__copy{position:absolute;right:max(10vw,110px);top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:var(--serif);font-weight:500;font-size:clamp(2rem,3.6vw,3.3rem);line-height:1.9;letter-spacing:.2em;margin:0}
+.hero__copy span{display:block;opacity:0;transform:translateY(-16px);transition:opacity 1.6s var(--ease),transform 1.6s var(--ease)}
+.hero__copy span:nth-child(2){margin-top:2.2em}
+.is-ready .hero__copy span{opacity:1;transform:none}
+.is-ready .hero__copy span:nth-child(1){transition-delay:1.6s}
+.is-ready .hero__copy span:nth-child(2){transition-delay:2.3s}
+.hero__lead{position:absolute;left:max(6vw,32px);bottom:11vh;max-width:30em;opacity:0;transition:opacity 1.4s 3s var(--ease)}
+.is-ready .hero__lead{opacity:1}
+.hero__en{font-family:var(--latin);font-style:italic;font-size:clamp(1.3rem,2vw,1.7rem);letter-spacing:.03em;margin:0 0 .5rem;color:var(--hakuji)}
+.hero__lead p:last-child{margin:0;font-size:.92rem;color:var(--kiri)}
+.hero__scroll{position:absolute;left:50%;bottom:28px;width:1px;height:60px;background:var(--line);overflow:hidden}
+.hero__scroll::after{content:"";position:absolute;left:0;top:-60px;width:1px;height:60px;background:var(--shinchu);animation:drop 2.6s var(--ease) infinite}
+@keyframes drop{to{top:60px}}
+
+/* ---------- Common section ---------- */
+.sec{padding:clamp(100px,14vw,180px) 0;position:relative}
+.sec-head{margin-bottom:clamp(48px,6vw,80px)}
+.sec-head__en{font-family:var(--latin);font-style:italic;font-size:1.1rem;color:var(--shinchu);margin:0 0 .4rem;letter-spacing:.04em}
+.sec-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.6;letter-spacing:.12em;margin:0}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
+.reveal.is-in{opacity:1;transform:none}
+.ph{position:relative;overflow:hidden;background:linear-gradient(140deg,#2a3947,#16202B 60%,#33403a)}
+.ph img{width:100%;height:100%;object-fit:cover;filter:saturate(.7) contrast(.96)}
+.ph.no-img img{display:none}
+
+/* ---------- Concept ---------- */
+.concept{background:var(--ai)}
+.concept__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,110px);align-items:center}
+.concept__txt p{font-family:var(--serif);font-size:1.08rem;line-height:2.25;margin:0 0 1.6em;max-width:28em}
+.concept__txt p:last-child{margin:0}
+.view{width:100%;max-width:520px;margin-inline:auto}
+.view circle{fill:none;stroke:var(--hakuji);stroke-width:1}
+.view .ring{opacity:0;transform-origin:260px 260px;transform:scale(.6);transition:opacity 1.2s var(--ease),transform 1.6s var(--ease)}
+.view.is-in .ring{opacity:1;transform:none}
+.view.is-in .r2{transition-delay:.5s}
+.view.is-in .r3{transition-delay:1s}
+.view text{fill:var(--kiri);font-family:var(--sans);font-size:13px;letter-spacing:.14em}
+.view .en{fill:var(--shinchu);font-family:var(--latin);font-style:italic;font-size:14px;letter-spacing:.02em}
+.view .dot{fill:var(--shinchu)}
+.concept__photo{margin-top:clamp(80px,10vw,140px);height:clamp(260px,40vw,520px)}
+.concept__photo figcaption{position:absolute;right:24px;bottom:18px;font-family:var(--latin);font-style:italic;color:var(--hakuji);font-size:1rem;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+
+/* ---------- Services ---------- */
+.services{background:var(--ai-deep)}
+.svc{display:grid;grid-template-columns:5fr 6fr;gap:clamp(32px,6vw,90px);align-items:center;padding:clamp(40px,5vw,64px) 0;border-top:1px solid var(--line)}
+.svc:last-child{border-bottom:1px solid var(--line)}
+.svc:nth-child(even) .svc__ph{order:2}
+.svc__ph{aspect-ratio:4/3}
+.svc__en{font-family:var(--latin);font-style:italic;font-size:1.5rem;color:var(--shinchu);margin:0}
+.svc h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.35rem,2.2vw,1.8rem);letter-spacing:.1em;line-height:1.6;margin:.2em 0 1em}
+.svc p{margin:0 0 1.4em;color:var(--kiri);max-width:32em}
+.svc ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem .6rem}
+.svc li{font-size:.82rem;padding:.3em 1em;border:1px solid var(--line);letter-spacing:.08em}
+
+/* ---------- Lifecycle ---------- */
+.life{background:var(--ai)}
+.life__intro{max-width:34em;color:var(--kiri);margin:-30px 0 60px}
+.life__svg{width:100%;height:auto;overflow:visible}
+.life__path{fill:none;stroke:var(--shinchu);stroke-width:1.2;stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset 3s var(--ease)}
+.life__svg.is-in .life__path{stroke-dashoffset:0}
+.life__base{fill:none;stroke:var(--line);stroke-width:1}
+.life__node{fill:var(--ai);stroke:var(--hakuji);stroke-width:1}
+.life__label{fill:var(--hakuji);font-family:var(--serif);font-size:26px;letter-spacing:.2em}
+.life__en{fill:var(--shinchu);font-family:var(--latin);font-style:italic;font-size:17px}
+.life__sub{fill:var(--kiri);font-family:var(--sans);font-size:13px;letter-spacing:.08em}
+.life__svg .grp{opacity:0;transition:opacity 1s var(--ease)}
+.life__svg.is-in .g1{opacity:1;transition-delay:.4s}
+.life__svg.is-in .g2{opacity:1;transition-delay:1.4s}
+.life__svg.is-in .g3{opacity:1;transition-delay:2.4s}
+.life__mobile{display:none}
+
+/* ---------- Approach ---------- */
+.approach{background:var(--ai-soft)}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.steps::before{content:"";position:absolute;left:0;right:0;top:36px;height:1px;background:var(--line)}
+.step{padding-right:28px;position:relative}
+.step__no{font-family:var(--latin);font-size:1rem;color:var(--kiri);display:block;height:28px}
+.step__mark{display:block;width:17px;height:17px;border:1px solid var(--shinchu);background:var(--ai-soft);position:relative;margin:0 0 28px}
+.step:nth-child(1) .step__mark{width:9px;height:9px;margin-top:4px;margin-bottom:32px}
+.step:nth-child(2) .step__mark{width:13px;height:13px;margin-top:2px;margin-bottom:30px}
+.step:nth-child(4) .step__mark{width:21px;height:21px;margin-top:-2px;margin-bottom:26px;background:var(--shinchu)}
+.step h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;letter-spacing:.2em;margin:0}
+.step__en{font-family:var(--latin);font-style:italic;color:var(--shinchu);margin:0 0 .8em}
+.step p:last-child{color:var(--kiri);font-size:.92rem;margin:0}
+
+/* ---------- Message ---------- */
+.message{background:var(--ai-deep);overflow:hidden}
+.msg{display:grid;grid-template-columns:4fr 7fr;gap:clamp(40px,7vw,120px);align-items:start}
+.msg__ph{aspect-ratio:3/4;position:sticky;top:120px}
+.msg__body{writing-mode:vertical-rl;font-family:var(--serif);font-size:1.02rem;line-height:2.4;letter-spacing:.14em;height:min(640px,78vh);max-width:100%;overflow-x:auto;overflow-y:hidden;margin-inline-start:auto;padding-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--koke) transparent}
+.msg__body h3{font-weight:500;font-size:1.7rem;letter-spacing:.24em;margin:0 0 0 1.8em;line-height:1.8}
+.msg__body p{margin:0 0 0 1.2em}
+.msg__sign{margin:0 2.4em 0 0 !important;align-self:flex-end;padding-top:12em;font-size:.95rem}
+.msg__sign b{font-weight:500;font-size:1.3rem;letter-spacing:.3em;margin-top:.6em;display:inline-block}
+
+/* ---------- Company ---------- */
+.company{background:var(--ai)}
+.co{display:grid;grid-template-columns:4fr 7fr;gap:clamp(32px,6vw,100px)}
+.co dl{margin:0;border-top:1px solid var(--line)}
+.co__row{display:grid;grid-template-columns:9em 1fr;gap:1.5rem;padding:1.4rem 0;border-bottom:1px solid var(--line)}
+.co dt{color:var(--kiri);font-size:.9rem;letter-spacing:.14em}
+.co dd{margin:0}
+.co dd ul{margin:0;padding:0;list-style:none}
+.co dd li+li{margin-top:.2em}
+.co__ph{aspect-ratio:1/1.1}
+
+/* ---------- Footer ---------- */
+.ft{background:var(--ai-deep);padding:90px 0 40px;border-top:1px solid var(--line);position:relative;overflow:hidden}
+.ft__big{font-family:var(--latin);font-style:italic;font-size:clamp(3rem,10vw,9rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(238,240,236,.16);margin:0 0 60px;letter-spacing:.01em;white-space:nowrap}
+.ft__row{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap}
+.ft nav ul{list-style:none;margin:0;padding:0;display:flex;gap:1.8rem;flex-wrap:wrap}
+.ft nav a{text-decoration:none;font-size:.82rem;color:var(--kiri);letter-spacing:.12em}
+.ft nav a:hover{color:var(--hakuji)}
+.ft small{display:block;margin-top:40px;color:var(--kiri);font-family:var(--latin);font-size:.9rem;letter-spacing:.06em}
+.totop{background:none;border:1px solid var(--line);color:var(--hakuji);width:52px;height:52px;cursor:pointer;display:grid;place-items:center;transition:border-color .3s}
+.totop:hover{border-color:var(--shinchu)}
+
+/* ---------- Responsive ---------- */
+@media (max-width:960px){
+  .rail{display:none}
+  .burger{display:block}
+  .nav{position:fixed;inset:0;background:var(--ai-deep);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility .4s}
+  .nav.is-open{opacity:1;visibility:visible}
+  .nav ul{flex-direction:column;gap:1.8rem;text-align:center}
+  .nav a{font-family:var(--serif);font-size:1.3rem}
+  .burger{z-index:110}
+  .concept__grid,.co,.msg{grid-template-columns:1fr}
+  .svc{grid-template-columns:1fr}
+  .svc:nth-child(even) .svc__ph{order:0}
+  .steps{grid-template-columns:1fr 1fr;gap:48px 0}
+  .steps::before{display:none}
+  .life__svg{display:none}
+  .life__mobile{display:block;list-style:none;margin:0;padding:0 0 0 28px;border-left:1px solid var(--shinchu)}
+  .life__mobile li{position:relative;padding:0 0 40px}
+  .life__mobile li::before{content:"";position:absolute;left:-34px;top:.7em;width:11px;height:11px;border:1px solid var(--hakuji);background:var(--ai);border-radius:50%}
+  .life__mobile strong{font-family:var(--serif);font-weight:500;font-size:1.4rem;letter-spacing:.2em;display:block}
+  .life__mobile em{font-family:var(--latin);color:var(--shinchu);display:block}
+  .life__mobile span{color:var(--kiri);font-size:.92rem}
+  .msg__ph{position:relative;top:0;aspect-ratio:16/10}
+  .co__ph{aspect-ratio:16/9}
+}
+@media (max-width:640px){
+  body{font-size:15px}
+  .hero__copy{writing-mode:horizontal-tb;right:auto;left:7vw;top:30%;transform:none;font-size:1.9rem;letter-spacing:.12em;line-height:1.7}
+  .hero__copy span:nth-child(2){margin-top:.3em}
+  .hero__lead{bottom:13vh;right:7vw;left:7vw}
+  .steps{grid-template-columns:1fr}
+  .msg__body{writing-mode:horizontal-tb;height:auto;overflow:visible;line-height:2.1;letter-spacing:.06em}
+  .msg__body h3{margin:0 0 1.2em;font-size:1.4rem}
+  .msg__body p{margin:0 0 1.2em}
+  .msg__sign{margin:2em 0 0 !important;padding-top:0;text-align:right}
+  .co__row{grid-template-columns:1fr;gap:.3rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .reveal,.hero__copy span,.hero__lead,.view .ring,.life__svg .grp{opacity:1 !important;transform:none !important}
+  .life__path{stroke-dashoffset:0 !important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+
+<header class="hd" id="hd">
+  <div class="hd__in">
+    <a class="logo" href="#top" aria-label="株式会社LCリトリート トップへ">
+      <svg class="logo__mark" viewBox="0 0 30 30" aria-hidden="true">
+        <rect x="1" y="1" width="28" height="28" fill="none" stroke="#B08D57"/>
+        <rect x="8" y="8" width="14" height="14" fill="none" stroke="#EEF0EC" stroke-opacity=".5"/>
+        <circle cx="15" cy="15" r="1.8" fill="#EEF0EC"/>
+      </svg>
+      <span class="logo__txt">
+        <span class="logo__en">LC Retreat</span>
+        <span class="logo__ja">株式会社LCリトリート</span>
+      </span>
+    </a>
+    <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+    <nav class="nav" id="nav" aria-label="メインメニュー">
+      <ul>
+        <li><a href="#concept">私たちの考え方</a></li>
+        <li><a href="#services">事業内容</a></li>
+        <li><a href="#approach">支援の進め方</a></li>
+        <li><a href="#message">代表メッセージ</a></li>
+        <li><a href="#company">会社概要</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- スクロールレール：スクロールに合わせて視野（フレーム）が広がる -->
+<div class="rail" aria-hidden="true">
+  <div class="rail__line"></div>
+  <div class="rail__tick" style="top:0"></div>
+  <div class="rail__tick" style="top:25%"></div>
+  <div class="rail__tick" style="top:50%"></div>
+  <div class="rail__tick" style="top:75%"></div>
+  <div class="rail__tick" style="top:100%"></div>
+  <div class="rail__frame" id="railFrame"></div>
+  <div class="rail__val" id="railVal">view ×1.0</div>
+</div>
+
+<main id="main">
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="top" aria-label="メインビジュアル">
+    <canvas id="field" aria-hidden="true"></canvas>
+    <h1 class="hero__copy">
+      <span><span class="nw">一歩</span><span class="nw">退くと、</span></span>
+      <span><span class="nw">全体が</span><span class="nw">見えてくる。</span></span>
+    </h1>
+    <div class="hero__lead">
+      <p class="hero__en">Step back, and see the whole.</p>
+      <p>株式会社LCリトリートは、経営戦略の策定と、企業の設立・運営・再編を支える経営コンサルティング会社です。</p>
+    </div>
+    <div class="hero__scroll" aria-hidden="true"></div>
+  </section>
+
+  <!-- ===== Concept ===== -->
+  <section class="sec concept" id="concept">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-head__en">Why “Retreat”</p>
+        <h2>退くのは、見渡すため。</h2>
+      </div>
+      <div class="concept__grid">
+        <div class="concept__txt reveal">
+          <p>日々の経営は、目の前の判断の連続です。売上、人、資金。近くで向き合うほど、事業全体の形や、進むべき方向は見えにくくなります。</p>
+          <p>リトリートとは、日常から少し距離をとる時間のこと。私たちは経営者のそばで、その「一歩退く」視点を担います。</p>
+          <p>現場の課題から、事業全体、そして会社の将来へ。視野を広げて整理したうえで、次に打つ手を一緒に決めていきます。</p>
+        </div>
+        <svg class="view reveal" id="viewSvg" viewBox="0 0 520 520" role="img" aria-labelledby="viewTitle">
+          <title id="viewTitle">視野の広がり：目の前の課題から、事業全体、経営と将来へ</title>
+          <g class="ring r3"><circle cx="260" cy="260" r="236" stroke-opacity=".35"/>
+            <text x="260" y="52" text-anchor="middle">経営と将来</text>
+            <text class="en" x="260" y="72" text-anchor="middle">the company’s future</text></g>
+          <g class="ring r2"><circle cx="260" cy="260" r="160" stroke-opacity=".55"/>
+            <text x="260" y="128" text-anchor="middle">事業全体</text>
+            <text class="en" x="260" y="148" text-anchor="middle">the business</text></g>
+          <g class="ring r1"><circle cx="260" cy="260" r="80" stroke-opacity=".85"/>
+            <text x="260" y="256" text-anchor="middle">目の前の課題</text>
+            <text class="en" x="260" y="276" text-anchor="middle">today’s issue</text></g>
+          <circle class="dot" cx="260" cy="300" r="3"/>
+        </svg>
+      </div>
+      <figure class="ph concept__photo reveal" style="margin-inline:0;margin-bottom:0">
+        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1800&q=75" alt="霧のかかった静かな森" loading="lazy" onerror="this.parentElement.classList.add('no-img')">
+        <figcaption>A quiet distance brings clarity.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== Services ===== -->
+  <section class="sec services" id="services">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-head__en">What we do</p>
+        <h2>事業内容</h2>
+      </div>
+
+      <article class="svc reveal">
+        <div class="ph svc__ph">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=75" alt="テーブルを囲んで話し合うビジネスパーソン" loading="lazy" onerror="this.parentElement.classList.add('no-img')">
+        </div>
+        <div>
+          <p class="svc__en">Advisory</p>
+          <h3>経営コンサルティング</h3>
+          <p>売上の伸び悩み、組織の課題、資金繰りの不安。経営の現状を一緒に整理し、どこから手をつけるべきかを明らかにします。定期的な対話を通じて、経営者の判断に寄り添います。</p>
+          <ul><li>経営課題の整理</li><li>現状分析</li><li>定期的な経営相談</li></ul>
+        </div>
+      </article>
+
+      <article class="svc reveal">
+        <div class="ph svc__ph">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=75" alt="資料とノートを広げて計画を練るデスク" loading="lazy" onerror="this.parentElement.classList.add('no-img')">
+        </div>
+        <div>
+          <p class="svc__en">Strategy</p>
+          <h3>経営戦略の策定と、<br>指導・助言</h3>
+          <p>会社がどこへ向かうのかを言葉と数字にします。中長期の方針から事業計画、実行段階の見直しまで、戦略が現場で動くところまで指導・助言を行います。</p>
+          <ul><li>中長期経営計画</li><li>事業計画の策定</li><li>実行支援と振り返り</li></ul>
+        </div>
+      </article>
+
+      <article class="svc reveal">
+        <div class="ph svc__ph">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=75" alt="見上げたオフィスビルの構造" loading="lazy" onerror="this.parentElement.classList.add('no-img')">
+        </div>
+        <div>
+          <p class="svc__en">Structure</p>
+          <h3>企業の設立・運営・再編の<br>コンサルティング</h3>
+          <p>会社を立ち上げるとき、仕組みを整えるとき、形を変えるとき。事業の目的に合った会社のかたちを考え、手続きの段取りから運営体制づくりまでを支援します。</p>
+          <!-- 要確認：税務判断・登記等の書類作成は士業の独占業務。提携士業との連携で対応する旨の追記可否 -->
+          <!-- 要確認：M&Aの仲介・FA業務を行う場合は、M&A支援機関登録の有無を表記 -->
+          <ul><li>会社設立の支援</li><li>運営体制の整備</li><li>組織再編・事業承継</li></ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== Lifecycle ===== -->
+  <section class="sec life" id="lifecycle">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-head__en">Through every stage</p>
+        <h2>会社の始まりから、<br>次のかたちまで。</h2>
+      </div>
+      <p class="life__intro reveal">設立、運営、再編。会社の段階が変わっても、同じ視点で経営を見つめ続けられることが、私たちの支援の特長です。</p>
+
+      <svg class="life__svg" id="lifeSvg" viewBox="0 0 1160 340" role="img" aria-labelledby="lifeTitle">
+        <title id="lifeTitle">企業のライフサイクル：設立、運営、再編</title>
+        <path class="life__base" d="M40 260 C 260 260, 300 110, 580 110 S 900 260, 1120 180"/>
+        <path class="life__path" d="M40 260 C 260 260, 300 110, 580 110 S 900 260, 1120 180"/>
+        <g class="grp g1">
+          <circle class="life__node" cx="120" cy="254" r="8"/>
+          <text class="life__label" x="120" y="310" text-anchor="middle">設立</text>
+          <text class="life__en" x="120" y="215" text-anchor="middle">Found</text>
+          <text class="life__sub" x="120" y="336" text-anchor="middle">事業に合った会社のかたちを</text>
+        </g>
+        <g class="grp g2">
+          <circle class="life__node" cx="580" cy="110" r="8"/>
+          <text class="life__label" x="580" y="60" text-anchor="middle">運営</text>
+          <text class="life__en" x="580" y="30" text-anchor="middle">Operate</text>
+          <text class="life__sub" x="580" y="160" text-anchor="middle">戦略を描き、仕組みを整える</text>
+        </g>
+        <g class="grp g3">
+          <circle class="life__node" cx="1040" cy="211" r="8"/>
+          <text class="life__label" x="1040" y="275" text-anchor="middle">再編</text>
+          <text class="life__en" x="1040" y="172" text-anchor="middle">Reshape</text>
+          <text class="life__sub" x="1040" y="302" text-anchor="middle">次の段階へ、かたちを変える</text>
+        </g>
+      </svg>
+
+      <ol class="life__mobile">
+        <li><strong>設立</strong><em>Found</em><span>事業に合った会社のかたちを</span></li>
+        <li><strong>運営</strong><em>Operate</em><span>戦略を描き、仕組みを整える</span></li>
+        <li><strong>再編</strong><em>Reshape</em><span>次の段階へ、かたちを変える</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== Approach ===== -->
+  <section class="sec approach" id="approach">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-head__en">How we work</p>
+        <h2>支援の進め方</h2>
+      </div>
+      <ol class="steps reveal">
+        <li class="step">
+          <span class="step__no">01</span><span class="step__mark" aria-hidden="true"></span>
+          <h3>退く</h3><p class="step__en">Step back</p>
+          <p>対話を重ね、経営の現状と、経営者が本当に気にかけていることを伺います。</p>
+        </li>
+        <li class="step">
+          <span class="step__no">02</span><span class="step__mark" aria-hidden="true"></span>
+          <h3>見渡す</h3><p class="step__en">Overview</p>
+          <p>数字と現場の両面から事業全体を整理し、課題の優先順位を明らかにします。</p>
+        </li>
+        <li class="step">
+          <span class="step__no">03</span><span class="step__mark" aria-hidden="true"></span>
+          <h3>定める</h3><p class="step__en">Decide</p>
+          <p>進む方向と打ち手を決め、戦略と計画に落とし込みます。</p>
+        </li>
+        <li class="step">
+          <span class="step__no">04</span><span class="step__mark" aria-hidden="true"></span>
+          <h3>進む</h3><p class="step__en">Move forward</p>
+          <p>実行の段階も伴走し、状況に応じて計画を見直します。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== Message ===== -->
+  <section class="sec message" id="message">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-head__en">Message</p>
+        <h2>代表メッセージ</h2>
+      </div>
+      <div class="msg">
+        <div class="ph msg__ph reveal">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=900&q=75" alt="ノートに考えを書き留める手元" loading="lazy" onerror="this.parentElement.classList.add('no-img')">
+        </div>
+        <!-- 要確認：以下は草案です。代表者ご本人による内容確認・修正のうえ公開してください -->
+        <div class="msg__body reveal" tabindex="0" aria-label="代表メッセージ本文（横にスクロールできます）">
+          <h3>立ち止まる時間が、<br>会社を前へ進める。</h3>
+          <p>経営者は、いつも走りながら考えています。</p>
+          <p>だからこそ、ときどき立ち止まり、少し離れた場所から自分の会社を眺める時間が必要だと考えています。</p>
+          <p>社名のリトリートには、その時間を経営者と一緒につくりたいという思いを込めました。</p>
+          <p>会社を興すとき、育てるとき、かたちを変えるとき。どの段階でも、全体を見渡したうえで次の一手を定める。その積み重ねが、会社の力になると信じています。</p>
+          <p>一社一社の事業に誠実に向き合い、判断の質を高めるパートナーでありたいと思います。</p>
+          <!-- 要確認：役職名 -->
+          <p class="msg__sign">株式会社LCリトリート　代表取締役<br><b>横山 哲也</b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Company ===== -->
+  <section class="sec company" id="company">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="sec-head__en">Company</p>
+        <h2>会社概要</h2>
+      </div>
+      <div class="co">
+        <div class="ph co__ph reveal">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=75" alt="自然光の入る落ち着いたオフィス空間" loading="lazy" onerror="this.parentElement.classList.add('no-img')">
+        </div>
+        <dl class="reveal">
+          <div class="co__row"><dt>会社名</dt><dd>株式会社LCリトリート</dd></div>
+          <!-- 要確認：役職名 -->
+          <div class="co__row"><dt>代表者</dt><dd>代表取締役　横山 哲也</dd></div>
+          <div class="co__row"><dt>所在地</dt><dd>〒294-0225<br>千葉県館山市佐野219</dd></div>
+          <div class="co__row"><dt>事業内容</dt><dd>
+            <ul>
+              <li>企業の経営に関するコンサルティング業務</li>
+              <li>経営戦略の策定及び企業経営に関する指導、助言</li>
+              <li>各種企業の設立、運営、再編に関するコンサルティング業務</li>
+            </ul>
+          </dd></div>
+          <!-- 要確認：設立年月日 
+          <div class="co__row"><dt>設立</dt><dd></dd></div>　-->
+          <!-- 要確認：資本金 
+          <div class="co__row"><dt>資本金</dt><dd></dd></div>　-->
+          <!-- 要確認：認定経営革新等支援機関・M&A支援機関登録等があれば行を追加 -->
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <p class="ft__big" aria-hidden="true">Step back, see the whole.</p>
+    <div class="ft__row">
+      <div>
+        <a class="logo" href="#top">
+          <svg class="logo__mark" viewBox="0 0 30 30" aria-hidden="true">
+            <rect x="1" y="1" width="28" height="28" fill="none" stroke="#B08D57"/>
+            <rect x="8" y="8" width="14" height="14" fill="none" stroke="#EEF0EC" stroke-opacity=".5"/>
+            <circle cx="15" cy="15" r="1.8" fill="#EEF0EC"/>
+          </svg>
+          <span class="logo__txt"><span class="logo__en">LC Retreat</span><span class="logo__ja">株式会社LCリトリート</span></span>
+        </a>
+        <nav aria-label="フッターメニュー" style="margin-top:28px">
+          <ul>
+            <li><a href="#concept">私たちの考え方</a></li>
+            <li><a href="#services">事業内容</a></li>
+            <li><a href="#approach">支援の進め方</a></li>
+            <li><a href="#message">代表メッセージ</a></li>
+            <li><a href="#company">会社概要</a></li>
+          </ul>
+        </nav>
+      </div>
+      <button class="totop" id="totop" aria-label="ページの先頭へ戻る">
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 12V2M2 7l5-5 5 5" fill="none" stroke="currentColor"/></svg>
+      </button>
+    </div>
+    <small>&copy; <span id="yr"></span> LC Retreat Inc.</small>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* ---------- Header state / nav ---------- */
+  const hd = document.getElementById('hd');
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+  const setMenu = (open) => {
+    nav.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  burger.addEventListener('click', () => setMenu(!nav.classList.contains('is-open')));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) { setMenu(false); burger.focus(); }
+  });
+  document.getElementById('totop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+
+  /* ---------- Scroll rail : 視野が広がる ---------- */
+  const frame = document.getElementById('railFrame');
+  const val = document.getElementById('railVal');
+  let scrollP = 0;
+  const onScroll = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    scrollP = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+    hd.classList.toggle('is-scrolled', scrollY > 40);
+    const size = 8 + scrollP * 28;
+    frame.style.top = (scrollP * 100) + '%';
+    frame.style.width = size + 'px';
+    frame.style.height = size + 'px';
+    val.textContent = 'view ×' + (1 + scrollP * 9).toFixed(1);
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Reveal ---------- */
+  const targets = document.querySelectorAll('.reveal, #viewSvg, #lifeSvg');
+  if ('IntersectionObserver' in window && !reduce) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -40px 0px' });
+    targets.forEach(t => io.observe(t));
+  } else {
+    targets.forEach(t => t.classList.add('is-in'));
+  }
+
+  /* ---------- Hero canvas : 引いていく視点 ---------- */
+  const cv = document.getElementById('field');
+  const ctx = cv.getContext('2d');
+  const hero = document.querySelector('.hero');
+  let W = 0, H = 0, dpr = 1;
+  const nodes = [];
+  // 3つの領域（設立・運営・再編／現場・事業・経営を暗示）に点を配置
+  const clusters = [
+    { x: -0.9, y: 0.35, n: 70, r: 0.55 },
+    { x: 0.15, y: -0.3, n: 110, r: 0.75 },
+    { x: 1.05, y: 0.4, n: 70, r: 0.55 },
+  ];
+  let seed = 7;
+  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  clusters.forEach((c, ci) => {
+    for (let i = 0; i < c.n; i++) {
+      const a = rand() * Math.PI * 2;
+      const d = Math.pow(rand(), 0.7) * c.r;
+      nodes.push({ x: c.x + Math.cos(a) * d, y: c.y + Math.sin(a) * d * 0.8,
+        ph: rand() * Math.PI * 2, c: ci, s: 0.6 + rand() * 1.1 });
+    }
+  });
+  // 中心の一点（「目の前の課題」）
+  nodes.push({ x: 0.02, y: 0.03, ph: 0, c: 1, s: 2.2, core: true });
+
+  // 近接ペアを事前計算
+  const links = [];
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+      const d = Math.hypot(dx, dy);
+      if (d < 0.2) links.push([i, j, d]);
+    }
+  }
+  // クラスタ間の細い連結
+  const bridges = [[0, 1], [1, 2]].map(([a, b]) => {
+    const pa = nodes.find(n => n.c === a && !n.core);
+    const pb = nodes.find(n => n.c === b && !n.core);
+    return [nodes.indexOf(pa), nodes.indexOf(pb)];
+  });
+
+  const resize = () => {
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    W = hero.clientWidth; H = hero.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+  resize();
+  addEventListener('resize', resize);
+
+  const start = performance.now();
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
+  let visible = true;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(e => { visible = e[0].isIntersecting; }).observe(hero);
+  }
+
+  const draw = (now) => {
+    const t = (now - start) / 1000;
+    const intro = reduce ? 1 : easeOut(Math.min(1, t / 5.5));
+    const base = Math.min(W, H * 1.6) * 0.34;
+    // 最初は大きく寄った状態 → 引いていく。スクロールでさらに少し引く
+    const heroScroll = Math.min(1, scrollY / (H || 1));
+    const zoom = (7 - 6 * intro) * (1 - heroScroll * 0.25);
+    const scale = base * zoom;
+    const cx = W * (W < 640 ? 0.5 : 0.42);
+    const cy = H * 0.5;
+    const core = nodes[nodes.length - 1];
+    const ox = core.x * scale * (1 - intro * 0), oy = core.y * scale;
+
+    ctx.clearRect(0, 0, W, H);
+
+    const pos = nodes.map(n => {
+      const wob = reduce ? 0 : Math.sin(t * 0.4 + n.ph) * 0.006;
+      return [cx + (n.x + wob) * scale - ox, cy + (n.y + Math.cos(t * 0.35 + n.ph) * (reduce ? 0 : 0.006)) * scale - oy];
+    });
+
+    // links
+    ctx.lineWidth = 0.6;
+    for (const [i, j, d] of links) {
+      const a = (1 - d / 0.2) * 0.32 * (0.35 + intro * 0.65);
+      ctx.strokeStyle = `rgba(238,240,236,${a.toFixed(3)})`;
+      ctx.beginPath(); ctx.moveTo(pos[i][0], pos[i][1]); ctx.lineTo(pos[j][0], pos[j][1]); ctx.stroke();
+    }
+    // bridges between clusters appear as the view widens
+    const bA = Math.max(0, (intro - 0.6) / 0.4) * 0.5;
+    if (bA > 0) {
+      ctx.strokeStyle = `rgba(176,141,87,${bA.toFixed(3)})`;
+      ctx.setLineDash([3, 5]);
+      for (const [i, j] of bridges) {
+        ctx.beginPath(); ctx.moveTo(pos[i][0], pos[i][1]); ctx.lineTo(pos[j][0], pos[j][1]); ctx.stroke();
+      }
+      ctx.setLineDash([]);
+    }
+    // nodes
+    nodes.forEach((n, k) => {
+      const [x, y] = pos[k];
+      if (x < -20 || x > W + 20 || y < -20 || y > H + 20) return;
+      if (n.core) {
+        ctx.fillStyle = '#B08D57';
+        ctx.beginPath(); ctx.arc(x, y, 3.2, 0, Math.PI * 2); ctx.fill();
+        // viewfinder frame that widens
+        const fs = 14 + intro * 60;
+        ctx.strokeStyle = `rgba(176,141,87,${(0.25 + (1 - intro) * 0.5).toFixed(3)})`;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(x - fs / 2, y - fs / 2, fs, fs);
+        return;
+      }
+      const tw = reduce ? 0.7 : 0.55 + Math.sin(t * 0.9 + n.ph) * 0.25;
+      ctx.fillStyle = `rgba(238,240,236,${tw.toFixed(3)})`;
+      ctx.beginPath(); ctx.arc(x, y, n.s * (0.8 + zoom * 0.15), 0, Math.PI * 2); ctx.fill();
+    });
+  };
+
+  const loop = (now) => {
+    if (visible) draw(now);
+    requestAnimationFrame(loop);
+  };
+  if (reduce) {
+    draw(performance.now());
+    addEventListener('resize', () => draw(performance.now()));
+  } else {
+    requestAnimationFrame(loop);
+  }
+
+  requestAnimationFrame(() => document.body.classList.add('is-ready'));
+})();
+</script>
+</body>
+</html>
